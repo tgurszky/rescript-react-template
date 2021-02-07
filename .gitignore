@@ -1,1 +1,7 @@
 node_modules/
+.bsb.lock
+.merlin
+manifest.json
+dist/
+lib/
+*.bs.js

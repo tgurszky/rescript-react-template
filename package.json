@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "bundle:vendor": "webpack --config config/webpack.vendor.config.js",
-    "bundle": "cross-env NODE_ENV=production webpack --config config/webpack.config.js",
-    "devserver": "cross-env NODE_ENV=development webpack serve --config config/webpack.config.js --open",
+    "wp:vendor": "webpack --config config/webpack.vendor.config.js",
+    "wp:build": "cross-env NODE_ENV=production webpack --config config/webpack.config.js",
+    "wp:start": "cross-env NODE_ENV=development webpack serve --config config/webpack.config.js --open",
     "re:build": "bsb -make-world -clean-world",
-    "re:watch": "bsb -make-world -clean-world -w",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "re:start": "bsb -make-world -clean-world -w",
+    "build": "npm run re:build && npm run wp:vendor && npm run wp:build",
+    "start": "npm run wp:vendor && npm-run-parallel re:start wp:start"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +24,7 @@
     "cross-env": "^7.0.3",
     "html-webpack-plugin": "5.0.0",
     "html-webpack-tags-plugin": "^3.0.0",
+    "npm-run-parallel": "^0.6.0",
     "webpack": "5.20.2",
     "webpack-cli": "4.5.0",
     "webpack-dev-server": "^3.11.2"
