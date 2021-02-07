@@ -15,19 +15,20 @@ module.exports = {
   entry: "./src/index.bs.js",
   output: {
     filename: "[name]_[fullhash].js",
-    path: path.resolve(__dirname, "..", "dist"),
+    path: path.join(__dirname, "..", "dist"),
   },
   plugins: [
     new webpack.DllReferencePlugin({
-      manifest: require("../config/manifest.json"),
+      context: path.join(__dirname, ".."),
+      manifest: path.join(__dirname, "..", "dist", "vendor-manifest.json"),
     }),
     new HtmlWebpackPlugin(),
     new HtmlWebpackTagsPlugin({
       tags: [
         {
           path: "",
-          glob: "react*.js",
-          globPath: path.resolve(__dirname, "..", "dist"),
+          glob: "vendor_*.js",
+          globPath: path.join(__dirname, "..", "dist"),
           append: false,
         },
       ],

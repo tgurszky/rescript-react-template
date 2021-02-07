@@ -4,17 +4,16 @@ const webpack = require("webpack");
 module.exports = {
   mode: "production",
   entry: {
-    react: "react",
-    "react-dom": "react-dom",
+    vendor: ["react", "react-dom"],
   },
   output: {
-    filename: "[name]_[fullhash].js",
-    path: path.resolve(__dirname, "..", "dist"),
+    filename: "vendor_[fullhash].js",
+    path: path.join(__dirname, "..", "dist"),
     library: "vendor_[fullhash]",
   },
   plugins: [
     new webpack.DllPlugin({
-      path: path.resolve(__dirname, "..", "config", "manifest.json"),
+      path: path.join(__dirname, "..", "dist", "vendor-manifest.json"),
       name: "vendor_[fullhash]",
     }),
   ],
